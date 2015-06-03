@@ -91,3 +91,29 @@ struct CGAffineTransform {
 `CGAffineTransformMake`和`CGAffineTransformMakeTranslation`同理
 
 
+初始化下拉刷新控件的：
+```
+    PRRefreshControl *refreshControl = [[PRRefreshControl alloc] init];
+    [refreshControl addTarget:self
+                       action:@selector(refreshControlTriggered:)
+             forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
+    [self.tableView addSubview:refreshControl];
+```
+突然发现其中的`UIControlEventValueChanged`事件（平常估计也就UISwitch、UISlider之类的才会用到），那么触发下拉刷新的`refreshControlTriggered:`方法为什么能在下拉50高度时执行呢？
+答案在这里：
+```
+- (void)scrollViewDidEndDragging
+{
+    UIScrollView *scrollView = self.scrollView;
+    UIEdgeInsets contentInset = self.scrollViewContentInset;
+    CGFloat offset = scrollView.contentOffset.y + contentInset.top;
+    if (!self.refreshing) {
+        if (offset < - self.height) {
+            [self beginRefreshing];
+            [self sendActionsForControlEvents:UIControlEventValueChanged];
+        }
+    }
+}
+```
+可以看到，`[self sendActionsForControlEvents:UIControlEventValueChanged];`就是触发前面绑定的`refreshControlTriggered`方法,有点回调的感觉有木有？
