@@ -1,8 +1,3 @@
-# First
-test
-Hey I'm a iOS developer From Xinyang,China
-newer guide from -->https://guides.github.com/activities/hello-world/
-哈哈哈
 
 ```
 // MBProgressHUD.m（版本 0.9.1）里面MBBarProgressView类的drawRect:方法里：
