@@ -117,3 +117,5 @@ struct CGAffineTransform {
 }
 ```
 可以看到，`[self sendActionsForControlEvents:UIControlEventValueChanged];`就是触发前面绑定的`refreshControlTriggered`方法,有点回调的感觉有木有？
+
+现在是19：22，我把github仓库名字改成了iOS-Learning-Notes
