@@ -1,8 +1,3 @@
-# First
-test
-Hey I'm a iOS developer From Xinyang,China
-newer guide from -->https://guides.github.com/activities/hello-world/
-哈哈哈
 
 ```
 // MBProgressHUD.m（版本 0.9.1）里面MBBarProgressView类的drawRect:方法里：
@@ -15,7 +10,7 @@ isnan()函数用来判断一个变量（比如上面的angle）是不是数字�
 忽略编译器警告（使用了已废弃方法、创建未使用的变量等），例子：
 `-Wdeprecated`表示已废弃
 
-```
+```objective-c
 //  SVProgressHUD.m里的361行
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated"
@@ -28,7 +23,7 @@ isnan()函数用来判断一个变量（比如上面的angle）是不是数字�
 
 > 说MJRefresh是垃圾的这位[大神](https://www.v2ex.com/t/194294#reply26)自己写了个挺简洁的下拉刷新控件[PRRefreshControl](https://github.com/Elethom/PRRefreshControl)
 
-```
+```objective-c
 //正常状态下，下拉后箭头朝下
 case PRRefreshControlStateNormal:
 {
@@ -42,7 +37,7 @@ case PRRefreshControlStateNormal:
 ```
 这里要说的是`self.arrowImageView.transform = CGAffineTransformIdentity`这句话，关于CGAffineTransformIdentity，苹果文档注释如下：
 
-```
+```objective-c
 struct CGAffineTransform {
   CGFloat a, b, c, d;
   CGFloat tx, ty;
@@ -92,7 +87,7 @@ struct CGAffineTransform {
 
 
 初始化下拉刷新控件的：
-```
+```objective-c
     PRRefreshControl *refreshControl = [[PRRefreshControl alloc] init];
     [refreshControl addTarget:self
                        action:@selector(refreshControlTriggered:)
@@ -102,7 +97,7 @@ struct CGAffineTransform {
 ```
 突然发现其中的`UIControlEventValueChanged`事件（平常估计也就UISwitch、UISlider之类的才会用到），那么触发下拉刷新的`refreshControlTriggered:`方法为什么能在下拉50高度时执行呢？
 答案在这里：
-```
+```objective-c
 - (void)scrollViewDidEndDragging
 {
     UIScrollView *scrollView = self.scrollView;
